@@ -1,13 +1,10 @@
 on:
   pull_request:
     branches:
-      - main
-      - master
+      - build_&_release
   push:
     branches:
-      - main
-      - master
-      - develop
+      - build_&_release
 name: "Build & Release"
 jobs:
   build:
@@ -24,7 +21,7 @@ jobs:
           channel: 'stable'
           architecture: x64
 
-      - run: flutter build apk --release --split-per-abi
+      - run: flutter build apk --release
       - run: |
           flutter build ios --no-codesign
           cd build/ios/iphoneos
